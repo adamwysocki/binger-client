@@ -1,0 +1,50 @@
+<div class="row">
+  <div class="large-12 small-12 columns">
+    <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-2">
+      <li>
+        <label>Name</label>
+        {{input value=content.name class="error" type="text"}}
+      </li>
+      <li>
+        <label>Host Name</label>
+        {{input value=content.hostname class="error" type="text"}}
+      </li>
+      <li>
+        <label>Check Interval (minutes)</label>
+        <div class="row">
+        <div class="small-10 medium-11 columns">
+          <div id="interval_slider" class="range-slider" style="margin-top:3%" data-slider data-options="start: 1; end: 60; display_selector: #sliderOutput3;">
+            <span class="range-slider-handle" role="slider" tabindex="0"></span>
+            <span class="range-slider-active-segment" style="background: none;"></span>
+          </div>
+          </div>
+          <div class="small-2 medium-1 columns" style="padding-top:1.5%;padding-left:0;">
+            <span id="sliderOutput3"></span>
+          </div>
+        </div>
+      </li>
+      <li>
+        <label>Type</label>
+        {{view "select"
+            content=types
+            optionValuePath="content.id"
+            optionLabelPath="content.type"
+            value=content.type}}
+      </li>
+    </ul>
+
+    {{#if content.isWebType}}
+      {{partial "binger-http-edit"}}
+    {{/if}}
+
+    <ul class="small-block-grid-1 medium-block-grid-1 large-block-grid-1">
+      <li>
+        <div class="right">
+          <button {{action "save" content.id}} class="button tiny">
+          Save</button>&nbsp;<button {{action "cancel"}} class="button tiny secondary">
+          Cancel</button>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

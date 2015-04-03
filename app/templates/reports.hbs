@@ -1,0 +1,32 @@
+<section class="main-section">
+  <div class="row" style="margin-top:2%;">
+    <div class="large-12 columns">
+      <h2>{{fa-icon "line-chart 5x"}}&nbsp;Reports</h2>
+
+      {{#if hasPageError}}
+      <div data-alert class="alert-box alert">
+        {{pageErrorMessage}}
+        <a href="#" {{action 'clearPageError'}} class="close">&times;</a>
+      </div>
+      {{/if}}
+
+      {{!-- TABLETS AND DESKTOPS --}}
+      <dl class="sub-nav panel mini-panel show-for-medium-up">
+        <dd class="active"><a href="#">Last 24 Hours</a></dd>
+        <dd><a href="#">Last 7 Days</a></dd>
+        <dd><a href="#">Last 30 Days</a></dd>
+      </dl>
+
+      {{!-- SMALL SCREENS --}}
+      <dl class="sub-nav panel mini-panel show-for-small-only">
+        <dd class="active"><a href="#" style="font-size:12px;">Last 24 Hours</a></dd>
+        <dd><a href="#" style="font-size:12px;">Last 7 Days</a></dd>
+        <dd><a href="#" style="font-size:12px;">Last 30 Days</a></dd>
+      </dl>
+
+    </div>
+  </div>
+</section>
+
+<a class="exit-off-canvas"></a>
+{{outlet}}

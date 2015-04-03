@@ -1,0 +1,22 @@
+<ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-2">
+  <li>
+    <label>Port</label>
+    {{content.port}}
+  </li>
+  <li>
+    <label>Path</label>
+    {{content.path}}
+  </li>
+  <li>
+    <label>Request Type</label>
+    {{view "select"
+        content=requestTypes
+        optionValuePath="content.id"
+        optionLabelPath="content.type"
+        value=content.method}}
+  </li>
+  <li>
+    <label>Contains</label>
+    {{content.expectedresult}}
+  </li>
+</ul>

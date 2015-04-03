@@ -1,0 +1,104 @@
+<section class="main-section">
+  <div class="row" style="margin-top:2%;">
+    <div class="large-12 small-12 columns">
+
+      {{!-- TODO: MOVE THIS TO APPLICATION ROUTE --}}
+      {{#if hasPageError}}
+        <div data-alert class="alert-box alert">
+          {{pageErrorMessage}}
+          <a href="#" {{action 'clearPageError'}} class="close">&times;</a>
+        </div>
+      {{/if}}
+
+      {{!-- CONFIRM DELETE MODAL ... CAN THIS BE A PARTIAL?? --}}
+      <div id="confirmDeleteModal" class="reveal-modal tiny" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+        <h3 id="modalTitle">Confirm Delete.</h3>
+        <p>Are you sure that you want to delete the binger "{{content.name}}"?</p>
+        <div class="right">
+          <button class="button tiny" {{action "confirmDelete" content.id}}>Confirm Delete</button>&nbsp;<button class="button secondary tiny" {{action "cancelDelete"}}>Cancel</button>
+        </div>
+        <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+      </div>
+
+      {{!-- BREADCRUMBS --}}
+      <ul class="breadcrumbs">
+        <li>{{#link-to "console"}}Console{{/link-to}}</li>
+        <li>Binger</li>
+        <li>{{content.name}}</li>
+      </ul>
+
+      {{!-- HEADER FOR LARGE SCREENS --}}
+      <div style="margin-bottom:20px;margin-top:40px;" class="show-for-medium-up">
+      <table class="console-full" style="border:0;margin-bottom:0;">
+        <tr>
+          <td class="text-left" style="padding:0;">
+            <h2 style="display:inline;line-height:.8em;margin-bottom:0;">
+              {{content.name}} <small style="position:absolute;margin-top:7px;">{{status-text content.status}}</small>
+              <br>
+              <small style="margin-top:0;">
+              <i>Hostname: {{content.hostname}}</i>
+              </small>
+            </h2>
+          </td>
+          <td class="text-right" style="vertical-align:top;padding:0;">
+            {{#if content.paused}}
+              <button class="tiny button no-bottom" {{action "resume" content.id}}>{{fa-icon "play"}}&nbsp;Resume Binger</button>
+            {{else}}
+              <button class="tiny button no-bottom" {{action "pause" content.id}}>{{fa-icon "pause"}}&nbsp;Pause Binger</button>
+            {{/if}}
+            &nbsp;{{#link-to "binger.edit" class="button tiny secondary no-bottom"}}{{fa-icon "edit"}}
+            &nbsp;Edit Binger{{/link-to}}&nbsp;<button class="tiny button secondary no-bottom" {{action "deleteBinger" content.id}}>{{fa-icon "times"}}&nbsp;Delete Binger</button>
+          </td>
+        </tr>
+      </table>
+      </div>
+
+      {{!-- HEADER FOR SMALL SCREENS --}}
+      <div style="margin-bottom:10px;margin-top:40px;" class="show-for-small-only">
+      <table class="console-full" style="border:0;margin-bottom:0;">
+        <tr>
+          <td class="text-left" style="padding:0;">
+            <h3 style="display:inline;margin-bottom:0;line-height:.9em;">
+              {{content.name}}&nbsp;<small style="position:absolute;margin-top:-4px;">{{status-small-text content.status}}</small>
+              <br>
+              <small style="margin-top:0;">
+                <i>Hostname: {{content.hostname}}</i>
+              </small>
+            </h3>
+          </td>
+        </tr>
+        <tr>
+          <td class="text-left" style="padding-top:15px;padding-left:0;background-color:#fff;">
+            <button class="xtra-tiny button no-bottom" {{action "pauseBinger" content.id}}>{{fa-icon "pause"}}&nbsp;Pause</button>
+            &nbsp;{{#link-to "binger.edit" class="button xtra-tiny secondary no-bottom"}}{{fa-icon "edit"}}
+            &nbsp;Edit{{/link-to}}&nbsp;
+            <button class="xtra-tiny button secondary no-bottom" {{action "deleteBinger" content.id}}>{{fa-icon "times"}}&nbsp;Delete</button>
+          </td>
+        </tr>
+      </table>
+      </div>
+
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="large-12 small-12 columns">
+
+      {{!-- TABLETS AND DESKTOPS --}}
+      <dl class="sub-nav panel mini-panel show-for-medium-up">
+        <dd class="active"><a href="#">Settings</a></dd>
+        <dd><a href="#">Events</a></dd>
+      </dl>
+
+      {{!-- SMALL SCREENS --}}
+      <dl class="sub-nav panel mini-panel show-for-small-only">
+        <dd class="active"><a href="#" style="font-size:12px;">Settings</a></dd>
+        <dd><a href="#" style="font-size:12px;">Events</a></dd>
+      </dl>
+
+    </div>
+  </div>
+  {{outlet}}
+</section>
+
+<a class="exit-off-canvas"></a>

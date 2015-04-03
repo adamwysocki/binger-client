@@ -1,0 +1,87 @@
+<section class="main-section">
+  <div class="row" style="margin-top:2%;">
+    <div class="large-6 medium-6 small-12 small-centered medium-centered large-centered columns">
+      <div class="text-center" style="margin-top:20px;margin-bottom:20px;">
+        <h2 style="line-height:.9em;">Create your free account.<br/><small>No credit card necessary.</small></h2>
+      </div>
+      <br>
+      <div class="panel">
+        <form>
+        <div class="row">
+          <div class="small-12 small-centered columns">
+            <div class="row collapse">
+              <div class="small-12 small-centered columns">
+                <label>Email Address
+                  {{input value=signup class="error" type="text" placeholder="Ex: someone@email.com"}}
+                </label>
+                {{#if hasError}}
+                <small class="error">{{errorMessage}}</small>
+                {{else}}
+                <div class="spacer">&nbsp;</div>
+                {{/if}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="small-12 small-centered columns">
+            <div class="row collapse">
+              <div class="small-12 small-centered columns">
+                <label>Password
+                  {{input value=password class="error" type="password" placeholder=""}}
+                </label>
+                {{#if hasError}}
+                <small class="error">{{errorMessage}}</small>
+                {{else}}
+                <div class="spacer">&nbsp;</div>
+                {{/if}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="small-12 small-centered columns">
+            <div class="row collapse">
+              <div class="small-12 small-centered columns">
+                <label>Confirm Password
+                  {{input value=confirmpassword class="error" type="password" placeholder=""}}
+                </label>
+                {{#if hasError}}
+                <small class="error">{{errorMessage}}</small>
+                {{else}}
+                <div class="spacer">&nbsp;</div>
+                {{/if}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="small-12 small-centered columns">
+            <div class="row collapse">
+              <div class="small-12 small-centered columns" style="padding-top:10px;">
+                {{#if isSubmitting}}
+                <button type="submit" style="font-size:22px;">Creating account ...&nbsp;<i class="fa fa-spinner fa-pulse"></i></button>
+                {{else}}
+                <button class="small" type="submit" style="width:100%;font-size:22px;">Sign up</button>
+                {{/if}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="small-12 small-centered columns">
+            <div class="row collapse">
+              <div class="small-12 small-centered columns" style="text-align:center;">
+                {{#link-to "login"}}Already have an account? Login{{/link-to}}
+              </div>
+            </div>
+          </div>
+        </div>
+    </form>
+    </div>
+  </div>
+</div>
+</section>
+
+<a class="exit-off-canvas"></a>
+{{outlet}}

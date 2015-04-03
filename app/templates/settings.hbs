@@ -1,0 +1,67 @@
+<section class="main-section">
+  <div class="row" style="margin-top:2%;">
+    <div class="large-12 columns">
+      <h2>{{fa-icon "cog 5x"}}&nbsp;Settings</h2>
+
+        {{#if hasPageError}}
+          <div data-alert class="alert-box alert">
+            {{pageErrorMessage}}
+            <a href="#" {{action 'clearPageError'}} class="close">&times;</a>
+          </div>
+        {{/if}}
+
+        <form>
+          <div class="row">
+            <div class="small-12 medium-10 large-9 columns">
+              <div class="row collapse">
+                <div class="small-12 medium-10 large-9 columns">
+                  <label>First Name
+                    {{input value=first_name class="error" type="text"}}
+                  </label>
+                  {{#if hasError}}
+                    <small class="error">{{errorMessage}}</small>
+                  {{else}}
+                    <div class="spacer">&nbsp;</div>
+                  {{/if}}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 medium-10 large-9 columns">
+              <div class="row collapse">
+                <div class="small-12 medium-10 large-9 columns">
+                  <label>Last Name
+                    {{input value=last_name class="error" type="text"}}
+                  </label>
+                  {{#if hasError}}
+                  <small class="error">{{errorMessage}}</small>
+                  {{else}}
+                  <div class="spacer">&nbsp;</div>
+                  {{/if}}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 medium-10 large-9 columns">
+              <div class="row collapse">
+                <div class="small-12 medium-10 large-9 columns">
+                <br/>
+                {{#if isSubmitting}}
+                <button class="tiny right console-cancel" type="submit">Save&nbsp;<i class="fa fa-spinner fa-pulse"></i></button>
+                {{else}}
+                  <button class="tiny right console-save" type="submit">Save</button>
+                {{/if}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+
+    </div>
+  </div>
+</section>
+
+<a class="exit-off-canvas"></a>
+{{outlet}}

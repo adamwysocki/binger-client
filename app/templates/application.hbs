@@ -1,0 +1,47 @@
+<div class="off-canvas-wrap docs-wrap" data-offcanvas>
+  <div class="inner-wrap">
+    <nav class="tab-bar">
+      <section class="left-small">
+        <a class="left-off-canvas-toggle menu-icon" aria-expanded="false"><span></span></a>
+      </section>
+
+      <section class="middle title-area tab-bar-section">
+        <h1 class="title">{{fa-icon "thumbs-up"}}<span class="logo-format">BINGER<span class="logo-part2-format">.io</span></span></h1>
+      </section>
+
+    </nav>
+
+    {{#if loggedIn}}
+    <aside class="left-off-canvas-menu" >
+      <ul class="off-canvas-list">
+        <li><label>Menu</label></li>
+        <li>{{#link-to "console"}}{{fa-icon "dashboard"}}&nbsp;Console{{/link-to}}</li>
+        <li>{{#link-to "groups"}}{{fa-icon "cubes"}}&nbsp;Groups{{/link-to}}</li>
+        <li>{{#link-to "reports"}}{{fa-icon "line-chart"}}&nbsp;Reports{{/link-to}}</li>
+        <li>{{#link-to "reports"}}{{fa-icon "users"}}&nbsp;Users{{/link-to}}</li>
+        <li>{{#link-to "reports"}}{{fa-icon "bell"}}&nbsp;Alerts{{/link-to}}</li>
+        <li><label>Account</label></li>
+        <li>{{#link-to "settings"}}{{fa-icon "user"}}&nbsp;Profile{{/link-to}}</li>
+        <li>{{#link-to "settings"}}{{fa-icon "shield"}}&nbsp;Reset Password{{/link-to}}</li>
+        <li>{{#link-to "settings"}}{{fa-icon "credit-card"}}&nbsp;Billing{{/link-to}}</li>
+        <li><a href="" {{action "logout"}}>{{fa-icon "sign-out"}}&nbsp;Logout</a></li>
+        {{#if isAdmin}}
+        <li><label>Admin</label></li>
+        <li>{{#link-to "settings"}}Users{{/link-to}}</li>
+        {{/if}}
+      </ul>
+    </aside>
+    {{/if}}
+
+    {{outlet}}
+
+    <section class="footer-section">
+      <div class="row" style="margin-top:5%;margin-bottom:5%;">
+        <div class="large-12 large-centered columns text-center">
+          <small>Copyright &copy; 2015, Binger LLC</small>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>

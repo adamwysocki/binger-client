@@ -1,0 +1,93 @@
+<section class="main-section">
+  <div class="row" style="margin-top:2%;">
+    <div class="large-12 columns">
+      <h2 style="display:inline;">{{fa-icon "cubes 5x"}}&nbsp;Groups</h2>
+      <button {{action 'addNewGroup'}}
+      style="margin-left:10px;vertical-align:middle;margin-bottom:1.5%;margin-top:0;"
+      class="xtra-tiny secondary">{{fa-icon "plus"}}&nbsp;Add Group</button>
+
+        {{#if hasPageError}}
+          <div data-alert class="alert-box alert">
+            {{pageErrorMessage}}
+            <a href="#" {{action 'clearPageError'}} class="close">&times;</a>
+          </div>
+        {{/if}}
+
+        {{outlet}}
+
+        {{#each group in controller}}
+          <div style="margin-top:30px;margin-bottom:60px;">
+          <table class="console-full" style="border:0;margin-bottom:0;">
+            <tr>
+              <td class="text-left" style="padding:0;">
+                <h4 style="margin-bottom:0;">{{#link-to "group" group.id}}{{group.name}}{{/link-to}}</h4>
+                <h6 style="margin-top:0;"><i>{{group.description}}</i></h6>
+              </td>
+              <td class="text-right" style="vertical-align:bottom;padding:0;">
+                {{#link-to "group.newbinger" group.id class="button xtra-tiny console-new"}}
+                    {{fa-icon "plus"}} Add Binger
+                {{/link-to}}
+                {{!--
+                &nbsp;
+                {{#link-to "group" group.id class="button tiny console-new secondary"}}
+                    {{fa-icon "cog"}} Manage Group
+                {{/link-to}}
+                --}}
+              </td>
+            </tr>
+          </table>
+          {{#if group.hasBingers}}
+            <table class="console-full">
+              <thead>
+                <tr>
+                  <th width="20"></th>
+                  <th width="250">Binger</th>
+                  <th class="text-center" width="150">Status</th>
+                  <th class="text-center" width="150">Response Time</th>
+                  <th class="text-right hide-for-small-only" width="250">
+                    Last Change
+                  </th>
+                  <th width="20"></th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each binger in group.bingers}}
+                  <tr>
+                    <td class="text-center">{{status-icon binger.status}}</td>
+                    <td>{{#link-to "binger" binger.id}}{{binger.display_name}}{{/link-to}}</td>
+                    <td class="text-center">{{status-text binger.status}}</td>
+                    <td class="text-center">
+                      {{status-response-time binger.responsetime}}
+                    </td>
+                    <td class="text-right hide-for-small-only">
+                      {{status-time binger.lastevent}}
+                    </td>
+                    <td class="text-center">
+                      {{#if binger.paused}}
+                        <a href="" {{action "resumeBinger" binger.id}}>
+                          {{status-button binger.status}}
+                        </a>
+                      {{else}}
+                        <a href="" {{action "pauseBinger" binger.id}}>
+                          {{status-button binger.status}}
+                        </a>
+                      {{/if}}
+                    </td>
+                  </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          {{else}}
+              <p class="panel text-center" style="padding-left:5%;padding-right:5%;">
+                You do not have any bingers configured for this group. To add your
+                first binger to the group {{#link-to "group" group.id}}{{group.name}}{{/link-to}}, click the
+                'Add Binger' button above or {{#link-to "console.new"}}click here{{/link-to}}
+              </p>
+          {{/if}}
+          </div>
+        {{/each}}
+    </div>
+  </div>
+</section>
+
+<a class="exit-off-canvas"></a>

@@ -1,0 +1,78 @@
+<section class="main-section">
+  <div class="row" style="margin-top:2%;">
+    <div class="large-6 medium-6 small-12 small-centered medium-centered large-centered columns">
+      <h2>Login</h2>
+
+      {{#if hasPageError}}
+      <div data-alert class="alert-box alert">
+        {{pageErrorMessage}}
+        <a href="#" {{action 'clearPageError'}} class="close">&times;</a>
+      </div>
+      {{/if}}
+
+      <div class="panel">
+        <form>
+        <div class="row">
+          <div class="small-12 small-centered columns">
+            <div class="row collapse">
+              <div class="small-12 small-centered columns">
+                <label>Email Address
+                  {{input value=username class="error" type="text" placeholder="Ex: someone@email.com"}}
+                </label>
+                {{#if hasUserNameError}}
+                <small class="error">{{userNameErrorMessage}}</small>
+                {{else}}
+                <div class="spacer">&nbsp;</div>
+                {{/if}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="small-12 small-centered columns">
+            <div class="row collapse">
+              <div class="small-12 small-centered columns">
+                <label>Password
+                  {{input value=password class="error" type="password" placeholder=""}}
+                </label>
+                {{#if hasPasswordError}}
+                <small class="error">{{passwordErrorMessage}}</small>
+                <a href="" style="font-size:12px;top:-8px;position:relative;">Forgot your password?</a>
+                {{else}}
+                <div class="spacer">&nbsp;</div>
+                <a href="" style="font-size:12px;top:-8px;position:relative;">Forgot your password?</a>
+                {{/if}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="small-12 small-centered columns">
+            <div class="row collapse">
+              <div class="small-12 small-centered columns" style="padding-top:10px;">
+                {{#if isSubmitting}}
+                <button type="submit" style="font-size:22px;">Logging in&nbsp;<i class="fa fa-spinner fa-pulse"></i></button>
+                {{else}}
+                <button class="small" {{action "login"}} style="font-size:22px;width:100%;">Login</button>
+                {{/if}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="small-12 small-centered columns">
+            <div class="row collapse">
+              <div class="small-12 small-centered columns" style="text-align:center;">
+                {{#link-to "signup"}}New Here? Create an Account{{/link-to}}
+              </div>
+            </div>
+          </div>
+        </div>
+    </form>
+    </div>
+  </div>
+</div>
+</section>
+
+<a class="exit-off-canvas"></a>
+{{outlet}}

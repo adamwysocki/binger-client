@@ -1,0 +1,60 @@
+.no-bottom {
+  margin-bottom:0;
+  padding-bottom:0;
+}
+
+.full-screen {
+  min-height: 2048px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.logo-format {
+  font-size: 26px;
+  margin-left: 5px;
+  margin-right: 10px;
+  font-family: 'Righteous', cursive;
+  letter-spacing: 2px;
+}
+
+.logo-part2-format {
+  font-size: 20px;
+  font-family: 'Verdana', 'sans-serif';
+}
+
+.red-icon {
+  color: red;
+}
+
+.green-icon {
+  color: green;
+}
+
+.orange-icon {
+  color: orange;
+}
+
+.gray-icon {
+  color: gray;
+}
+
+.mini-panel {
+  padding-top: 1%;
+  padding-bottom: 1%;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+button.xtra-tiny, .button.xtra-tiny {
+  padding-top: 0.325rem;
+  padding-right: .905rem;
+  padding-bottom: 0.3875rem;
+  padding-left: .905rem;
+  font-size: 0.5875rem;
+}

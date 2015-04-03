@@ -1,0 +1,59 @@
+<form {{action "addBinger" content.id on="submit"}}>
+<div class="row">
+  <div class="small-12 medium-8 large-8 large-centered medium-centered columns">
+    <p class="panel">
+      <div class="row">
+        <div class="large-centered medium-centered columns">
+          <div class="row collapse">
+            <div class="small-9 columns">
+              <label>Host Name or Tcp/Ip Address
+                {{input value=address class="error"
+                  type="text" placeholder="Ex: www.google.com"}}
+              </label>
+              {{#if hasError}}
+                <small class="error">{{errorMessage}}</small>
+              {{else}}
+                <div class="spacer">&nbsp;</div>
+              {{/if}}
+            </div>
+            <div class="small-3 columns">
+              <div style="margin-left:5px;">
+                <label>Type
+                  <br/>
+                  {{view "select"
+                      content=types
+                      optionValuePath="content.id"
+                      optionLabelPath="content.type"
+                      value=selectedType.id}}
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-centered medium-centered columns">
+          <div class="row collapse">
+            <div class="small-12 columns right">
+            {{#if isSubmitting}}
+            <button class="tiny secondary right" disabled
+                    {{action "cancelAdd"}}>Cancel</button>
+            <button class="tiny right console-cancel" type="submit">
+              Save&nbsp;<i class="fa fa-spinner fa-pulse"></i></button>
+            {{else}}
+              <button class="tiny secondary right"
+              {{action "cancelAdd"}}>Cancel</button>
+              <button class="tiny right console-save"
+              type="submit">Save</button>
+            {{/if}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </p>
+  </div>
+</div>
+</form>
+
+
+{{outlet}}

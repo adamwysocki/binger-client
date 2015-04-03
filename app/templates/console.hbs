@@ -1,0 +1,86 @@
+<section class="main-section">
+  <div class="row" style="margin-top:2%;">
+    <div class="large-12 columns">
+      <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-2">
+        <li>
+          <h2 style="display:inline;">{{fa-icon "dashboard 5x"}}&nbsp;Console</h2>
+        </li>
+        <li class="text-right show-for-medium-up">
+          <button {{action 'addNewGroup'}} class="tiny no-bottom" style="margin-top:1.8%">{{fa-icon "plus"}}&nbsp;Add Binger</button>
+        </li>
+        <li class="show-for-small-only">
+          <button {{action 'addNewGroup'}} class="xtra-tiny no-bottom">{{fa-icon "plus"}}&nbsp;Add Binger</button>
+        </li>
+      </ul>
+
+        {{#if hasPageError}}
+          <div data-alert class="alert-box alert">
+            {{pageErrorMessage}}
+            <a href="#" {{action 'clearPageError'}} class="close">&times;</a>
+          </div>
+        {{/if}}
+
+        {{outlet}}
+
+          <div style="margin-bottom:60px;">
+            <table style="border:0;" class="console-full">
+              <tr>
+                <td width="33%" style="text-align:center;">
+                  <h2 style="color:#436117;">
+                    <i class="fa fa-play fa-rotate-270" aria-hidden="true"></i>
+                    &nbsp;{{controller.up}}</h2></td>
+                <td width="33%" style="text-align:center;">
+                  <h2 style="color:#B61B1B;">
+                    <i class="fa fa-play fa-rotate-90" aria-hidden="true"></i>
+                    &nbsp;{{controller.down}}</h2></td>
+                <td width="33%" style="text-align:center;">
+                  <h2 style="color:#436117;">
+                    {{controller.responsetime}} ms</h2></td>
+              </tr>
+            </table>
+            <table class="console-full">
+              <thead>
+                <tr>
+                  <th width="20"></th>
+                  <th width="250">Binger</th>
+                  <th class="text-center" width="150">Status</th>
+                  <th class="text-center" width="150">Response Time</th>
+                  <th class="text-right hide-for-small-only" width="250">
+                    Last Change
+                  </th>
+                  <th width="20"></th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each binger in controller}}
+                  <tr>
+                    <td class="text-center">{{status-icon binger.status}}</td>
+                    <td>{{#link-to "binger" binger.id}}{{binger.display_name}}{{/link-to}}</td>
+                    <td class="text-center">{{status-text binger.status}}</td>
+                    <td class="text-center">
+                      {{status-response-time binger.responsetime}}
+                    </td>
+                    <td class="text-right hide-for-small-only">
+                      {{status-time binger.lastevent}}
+                    </td>
+                    <td class="text-center">
+                      {{#if binger.paused}}
+                        <a href="" {{action "resumeBinger" binger.id}}>
+                          {{status-button binger.status}}
+                        </a>
+                      {{else}}
+                        <a href="" {{action "pauseBinger" binger.id}}>
+                          {{status-button binger.status}}
+                        </a>
+                      {{/if}}
+                    </td>
+                  </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+    </div>
+  </div>
+</section>
+
+<a class="exit-off-canvas"></a>

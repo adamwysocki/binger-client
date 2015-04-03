@@ -1,0 +1,127 @@
+<section class="main-section">
+  <div class="row" style="margin-top:2%;">
+    <div class="large-12 small-12 columns">
+
+      {{#if hasPageError}}
+        <div data-alert class="alert-box alert">
+          {{pageErrorMessage}}
+          <a href="#" {{action 'clearPageError'}} class="close">&times;</a>
+        </div>
+      {{/if}}
+
+      <div id="confirmDeleteModal" class="reveal-modal tiny" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+        <h3 id="modalTitle">Confirm Delete.</h3>
+        <p>Are you sure that you want to delete the group "{{content.name}}"?</p>
+        <div class="right">
+          <button class="button tiny" {{action "confirmDelete" content.id}}>Confirm Delete</button>&nbsp;<button class="button secondary tiny" {{action "cancelDelete"}}>Cancel</button>
+        </div>
+        <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+      </div>
+
+      <ul class="breadcrumbs">
+        <li>{{#link-to "console"}}Console{{/link-to}}</li>
+        <li>Group</li>
+        <li>{{content.name}}</li>
+      </ul>
+
+      <div style="margin-bottom:20px;margin-top:40px;" class="show-for-medium-up">
+      <table class="console-full" style="border:0;margin-bottom:0;">
+        <tr>
+          <td class="text-left" style="padding:0;">
+            <h1 style="display:inline;line-height:.8em;margin-bottom:0;">
+              {{content.name}}
+              <br>
+              <small style="margin-top:0;">
+                <i>{{content.description}}</i>
+              </small>
+            </h1>
+          </td>
+          <td class="text-right" style="vertical-align:top;padding:0;">
+            {{#link-to "group.newbinger" class="button tiny no-bottom"}}{{fa-icon "plus"}}&nbsp;Add Binger{{/link-to}}
+            &nbsp;{{#link-to "group.edit" class="button tiny secondary no-bottom"}}{{fa-icon "edit"}}
+            &nbsp;Edit Group{{/link-to}}&nbsp;<button class="tiny button secondary no-bottom" {{action "deleteGroup" content.id}}>{{fa-icon "times"}}&nbsp;Delete Group</button>
+          </td>
+        </tr>
+      </table>
+      </div>
+
+      <div style="margin-bottom:20px;margin-top:40px;" class="show-for-small-only">
+      <table class="console-full" style="border:0;margin-bottom:0;">
+        <tr>
+          <td class="text-left" style="padding:0;">
+            <h3 style="display:inline;margin-bottom:0;line-height:.9em;">
+              {{content.name}}
+              <br>
+              <small style="margin-top:0;">
+                <i>{{content.description}}</i>
+              </small>
+            </h3>
+          </td>
+        </tr>
+        <tr>
+          <td class="text-center" style="padding-top:10px;background-color:#fff;">
+            {{#link-to "group.newbinger" class="button xtra-tiny no-bottom"}}{{fa-icon "plus"}}&nbsp;Add Binger{{/link-to}}
+            &nbsp;{{#link-to "group.edit" class="button xtra-tiny secondary no-bottom"}}{{fa-icon "edit"}}
+            &nbsp;Edit Group{{/link-to}}&nbsp;<button class="xtra-tiny button secondary no-bottom" {{action "deleteGroup" content.id}}>{{fa-icon "times"}}&nbsp;Delete Group</button>
+          </td>
+        </tr>
+      </table>
+      </div>
+
+      {{outlet}}
+
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="large-12 small-12 columns">
+
+      {{!-- TABLETS AND DESKTOPS --}}
+      <dl class="sub-nav panel mini-panel show-for-medium-up">
+        <dd class="active"><a href="#">Bingers</a></dd>
+        <dd><a href="#">Events</a></dd>
+      </dl>
+
+      {{!-- SMALL SCREENS --}}
+      <dl class="sub-nav panel mini-panel show-for-small-only">
+        <dd class="active"><a href="#" style="font-size:12px;">Bingers</a></dd>
+        <dd><a href="#" style="font-size:12px;">Events</a></dd>
+      </dl>
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="large-12 small-12 columns">
+      <h4>Bingers</h4>
+      <div>
+      <table class="console-full">
+        <thead>
+          <tr>
+            <th width="20"></th>
+            <th width="250">Binger</th>
+            <th class="text-center" width="150">Status</th>
+            <th class="text-center" width="150">Response Time</th>
+            <th class="text-right hide-for-small-only" width="250">Last Change</th>
+            <th width="20"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each binger in content.bingers}}
+            <tr>
+              <td class="text-center">{{status-icon binger.status}}</td>
+              <td>{{#link-to "binger" binger.id}}{{binger.name}}{{/link-to}}</td>
+              <td class="text-center">{{status-text binger.status}}</td>
+              <td class="text-center">{{status-response-time binger.responsetime}}</td>
+              <td class="text-right hide-for-small-only">{{status-time binger.lastevent}}</td>
+              <td class="text-center"><a href="" {{action "pauseBinger" binger.id}}>{{status-button binger.status}}</a></td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<a class="exit-off-canvas"></a>
